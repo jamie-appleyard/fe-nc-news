@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -5,64 +10,106 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  background-color: #003049;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
+nav {
+  border: solid 1px white;
+  width: 92vw;;
+  padding: 1em;
+  height: 5vh;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  justify-content: space-between;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+nav p {
+  align-self: center;
+  margin-left: 1em;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+nav form {
+  align-self: center;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.profile-image-frame {
+  height: 5vh;
+  width: 5vh;
+  border: solid 1px #ffffff;
+  display: flex;
+  border-radius: 50%;
+  align-self: center;
+  margin-right: 1em;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.profile-image {
+  height: 5vh;
+  width: 5vh;
+}
+
+.articles-list {
+  padding: 1em
+}
+
+.article-card {
+  border: solid 1px #ffffff;
+  border-radius: 10px;
+  padding: 1em;
+  text-align: left;
+  margin-bottom: 1em;
+}
+
+.article-card-details-block {
+  display: flex;
+  height: 5vh;
+  margin-bottom: 1em;
+}
+
+.article-card-details-block p {
+  align-self: center;
+}
+
+.article-card h3 {
+  margin-bottom: 1em;
+}
+
+.article-card img {
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.vote-module {
+  display: flex;
+  justify-content: left;
+}
+
+.vote-module img {
+  height: 1.5em;
+  width: 1.5em;
+  margin-right: 1em;
+}
+
+.comments-button {
+  border: solid 1px #ffffff;
+  border-radius: 10px;
+  display: flex;
+  height: 1.5em;
+  padding: 0.5em;
+  margin-left: auto;
+}
+.comments img {
+  height: 1.5em;
+  width: 1.5em;
+  margin: none;
+  align-self: center;
+}
+
+.commets p {
+  margin: none;
+  align-self: center;
 }

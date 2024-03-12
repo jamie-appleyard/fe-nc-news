@@ -1,33 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
+import { UserContext } from './context/UserContext'
+import { Routes, Route } from 'react-router-dom'
 import './App.css'
+import { getTopics, getUser, getUsers } from './utils'
+import NavBar from './components/NavBar'
+import ArticlesList from './components/ArticlesList'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [user, setUser] = useState({}) //wants to be a useEffect to retrieve a user object from API
+  const [isLoggedIn, setIsLoggedIn] = useState(true)
+  const [topics, setTopics] = useState([])
+  const [selectedTopic, setSelectedTopic] = useState('')
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    getTopics().then((topics) => {
+      setTopics(topics)
+    })
+  }, [])
+
+  useEffect(() => {
+    getUser('grumpy19').then((user) => {
+      setUser(user)
+    })
+  }, [])
+
+  useEffect(() => {
+    getUsers().then((users) => {
+      setUsers(users)
+    })
+  }, [])
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <UserContext.Provider value={{user, isLoggedIn, users}}>
+        <NavBar topics={topics} setSelectedTopic={setSelectedTopic}/>
+        <Routes>
+          <Route path='/' element={<ArticlesList/>}/>
+        </Routes>
+      </UserContext.Provider>
     </>
   )
 }
