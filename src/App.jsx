@@ -5,6 +5,7 @@ import './App.css'
 import { getTopics, getUser, getUsers } from './utils'
 import NavBar from './components/NavBar'
 import ArticlesList from './components/ArticlesList'
+import ArticleDetail from './components/ArticleDetail'
 
 function App() {
   const [user, setUser] = useState({}) //wants to be a useEffect to retrieve a user object from API
@@ -37,6 +38,7 @@ function App() {
         <NavBar topics={topics} setSelectedTopic={setSelectedTopic}/>
         <Routes>
           <Route path='/' element={<ArticlesList/>}/>
+          <Route path='/articles/:articleID' element={<ArticleDetail/>}/>
         </Routes>
       </UserContext.Provider>
     </>

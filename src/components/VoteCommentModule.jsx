@@ -1,5 +1,5 @@
 const VoteCommentModule = (props) => {
-    const {votes} = props
+    const {votes, commentsOn, commentCount} = props
     return (
         <div className="vote-module">
             <img src='src/assets/thumbs-up-regular.svg'/>
@@ -7,7 +7,7 @@ const VoteCommentModule = (props) => {
             <p>{votes}</p>
             <div className="comments-button">
                 <img src="src/assets/comment-regular.svg"/>
-                <p>Comments</p>
+                <p>Comments {commentCount}</p>
             </div>
         </div>
     )
