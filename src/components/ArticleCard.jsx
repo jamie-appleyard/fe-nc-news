@@ -1,20 +1,30 @@
 import ProfileImage from "./ProfileImage"
 import VoteCommentModule from "./VoteCommentModule"
-import { useContext } from "react"
+import { useContext, useState, useEffect } from "react"
 import { UserContext } from "../context/UserContext"
+import { Link } from 'react-router-dom'
 
 const ArticleCard = (props) => {
     const { users } = useContext(UserContext)
+    const [author, setAuthor] = useState('')
     const {article} = props
+
+    useEffect(() => {
+        const matchingAuthor = users.filter((user) => user.username === article.author)[0]
+        setAuthor(matchingAuthor)
+    }, [users])
+    
     return (
         <div className="article-card">
-            <div className="article-card-details-block">
-                <ProfileImage image_url={users.length > 0 ? users.filter((user) => user.username === article.author)[0].avatar_url : null}/>
-                <p>{article.author} - {article.topic}</p>
-            </div>
-            <h3>{article.title}</h3>
-            <img src={article.article_img_url}/>
-            <VoteCommentModule votes={article.votes} commentsOn={true} commentCount={article.comment_count}/>
+            <Link className='router-link' to={`/articles/${article.article_id}`}>
+                <div className="article-card-details-block">
+                    <ProfileImage image_url={author ? author.avatar_url : '/src/assets/user-regular.svg'}/>
+                    <p>{article.author} - {article.topic}</p>
+                </div>
+                <h3>{article.title}</h3>
+                <img src={article.article_img_url}/>
+                <VoteCommentModule votes={article.votes} commentsOn={true} commentCount={article.comment_count}/>
+            </Link>
         </div>
     )
 }
