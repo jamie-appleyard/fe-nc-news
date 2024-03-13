@@ -18,7 +18,6 @@ const ArticleDetail = () => {
     }, [])
 
     useEffect(() => {
-        console.log(users)
         const matchingAuthor = users.filter((user) => user.username === article.author)[0]
         setAuthor(matchingAuthor)
     }, [users])
