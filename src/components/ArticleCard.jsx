@@ -12,7 +12,7 @@ const ArticleCard = (props) => {
     useEffect(() => {
         const matchingAuthor = users.filter((user) => user.username === article.author)[0]
         setAuthor(matchingAuthor)
-    }, [users])
+    }, [])
     
     return (
         <div className="article-card">
