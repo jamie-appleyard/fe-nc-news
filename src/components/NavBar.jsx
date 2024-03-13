@@ -2,14 +2,12 @@ import { useContext } from "react"
 import { UserContext } from "../context/UserContext"
 import ProfileImage from "./ProfileImage"
 
-//add functionality for updating selected topic
-//add menu functionality 
 const NavBar = (props) => {
     const { topics, setSelectedTopic } = props
     const { user } = useContext(UserContext)
     return (
         <nav>
-            <p>Menu</p>
+            <img src='/src/assets/bars-solid.svg'/>
             <form>
                 <select>
                     <option key='home' value='Home'>Home</option>

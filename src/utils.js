@@ -32,3 +32,9 @@ export const getArticleByID = (articleID) => {
         return response.data.article
     })
 }
+
+export const getCommentsByArticleID = (articleID) => {
+    return NCNewsAPI.get(`/articles/${articleID}/comments`).then((response) => {
+        return response.data.comments
+    })
+}

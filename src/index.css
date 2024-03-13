@@ -31,6 +31,12 @@ nav p {
   margin-left: 1em;
 }
 
+nav img {
+  align-self: center;
+  margin-left: 1em;
+  height: 2em;
+}
+
 nav form {
   align-self: center;
 }
@@ -50,6 +56,7 @@ nav form {
 .profile-image {
   height: 5vh;
   width: 5vh;
+  margin: 0px;
 }
 
 .articles-list {
@@ -86,6 +93,7 @@ nav form {
 .vote-module {
   display: flex;
   justify-content: left;
+  margin-left: 1em;
 }
 
 .vote-module img {
@@ -117,7 +125,35 @@ a {
   margin-bottom: 1em;
 }
 
-.article-detail img {
+.article-detail-img {
   width: 100%;
   margin-bottom: 1em;
+}
+
+.comments {
+  padding: 1em;
+}
+
+.comment {
+  margin-bottom: 2em;
+  text-align: left;
+  border-top: 1px solid #ffffff50;
+  padding-top: 1em;
+}
+
+.comment-body {
+  margin-left: 1em;
+  margin-bottom: 1em;
+}
+
+.sub-menu {
+  display: flex;
+  justify-content: left;
+  margin-bottom: 1em;
+  padding: 1em
+}
+
+.back-button {
+  height: 1.5em;
+  align-self: left;
 }
