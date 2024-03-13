@@ -27,3 +27,8 @@ export const getUsers = () => {
         return response.data.users
     })
 }
+export const getArticleByID = (articleID) => {
+    return NCNewsAPI.get(`/articles/${articleID}`).then((response) => {
+        return response.data.article
+    })
+}
