@@ -4,7 +4,7 @@ import Comment from "./Comment"
 
 const Comments = (props) => {
     const [isLoading, setIsLoading] = useState(true)
-    const { articleID, setDisplayCommentForm, comments, setComments } = props
+    const { articleID, setDisplayCommentForm, comments, setComments, setDisplayStatusMessage, setStatusMessage } = props
 
     useEffect(() => {
         getCommentsByArticleID(articleID).then((comments) => {
@@ -41,7 +41,7 @@ const Comments = (props) => {
                 <>
                     <div className="comments">
                         {comments.map((comment) => {
-                            return <Comment key={comment.comment_id} comment={comment}/>
+                            return <Comment key={comment.comment_id} comment={comment} comments={comments} setComments={setComments} setDisplayStatusMessage={setDisplayStatusMessage} setStatusMessage={setStatusMessage}/>
                         })}
                     </div>
                     <div className="add-comment-overlay">
