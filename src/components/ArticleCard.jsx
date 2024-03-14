@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom'
 
 const ArticleCard = (props) => {
     const { users } = useContext(UserContext)
-    const [author, setAuthor] = useState('')
     const {article} = props
+    const [author, setAuthor] = useState('')
 
     useEffect(() => {
         const matchingAuthor = users.filter((user) => user.username === article.author)[0]
@@ -23,8 +23,8 @@ const ArticleCard = (props) => {
                 </div>
                 <h3>{article.title}</h3>
                 <img src={article.article_img_url}/>
-                <VoteCommentModule votes={article.votes} commentsOn={true} commentCount={article.comment_count}/>
             </Link>
+                <VoteCommentModule voteTargetID={article.article_id} votes={article.votes} commentsOn={true} commentCount={article.comment_count}/>
         </div>
     )
 }

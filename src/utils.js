@@ -38,3 +38,9 @@ export const getCommentsByArticleID = (articleID) => {
         return response.data.comments
     })
 }
+
+export const patchArticleVotesByArticleID = (articleID, incVoteObj) => {
+    return NCNewsAPI.patch(`/articles/${articleID}`, incVoteObj).then((response) => {
+        return response.data.article
+    })
+}
