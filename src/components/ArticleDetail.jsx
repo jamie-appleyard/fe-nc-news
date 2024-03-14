@@ -7,6 +7,8 @@ import ProfileImage from "./ProfileImage"
 import Comments from "./Comments"
 import VoteCommentModule from "./VoteCommentModule"
 import BackButton from "./BackButton"
+import AddCommentForm from "./AddCommentForm"
+import StatusMessage from "./StatusMessage"
 import { Link } from "react-router-dom"
 
 const ArticleDetail = () => {
@@ -14,6 +16,10 @@ const ArticleDetail = () => {
     const [article, setArticle] = useState({})
     const [author, setAuthor] = useState('')
     const [loading, setLoading] = useState(true)
+    const [comments, setComments] = useState([])
+    const [displayCommentForm, setDisplayCommentForm] = useState(false)
+    const [displayStatusMessage, setDisplayStatusMessage] = useState(false)
+    const [statusMessage, setStatusMessage] = useState('')
     const { users } = useContext(UserContext)
 
     useEffect(() => {
@@ -37,7 +43,9 @@ const ArticleDetail = () => {
    } else {
         return (
             <>
-                <div className="article-detail">
+                { displayCommentForm ? <AddCommentForm title={article.title} setDisplayCommentForm={setDisplayCommentForm} articleID={articleID} setComments={setComments} setDisplayStatusMessage={setDisplayStatusMessage} setStatusMessage={setStatusMessage}/> : null}
+                { displayStatusMessage ? <StatusMessage message={statusMessage} setDisplayStatusMessage={setDisplayStatusMessage}/> : null}
+                <div className="article-detail" style={ displayCommentForm ? {display:'none'} : {display:"block"} }>
                     <div className="sub-menu">
                         <Link to='/'>
                             <BackButton/>
@@ -52,10 +60,10 @@ const ArticleDetail = () => {
                     <p>{article.body}</p>
                 </div>
                 <VoteCommentModule voteTargetID={article.article_id} votes={article.votes} commentsOn={false}/>
-                <Comments articleID={articleID}/>
+                <Comments articleID={articleID} articleTitle={article.title} setDisplayCommentForm={setDisplayCommentForm} comments={comments} setComments={setComments}/>
             </>
         )
-   }
+    }
 }
 
 export default ArticleDetail

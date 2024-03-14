@@ -3,27 +3,57 @@ import { useContext, useEffect, useState } from "react"
 import Comment from "./Comment"
 
 const Comments = (props) => {
-    const [comments, setComments] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-    const { articleID } = props
+    const { articleID, setDisplayCommentForm, comments, setComments } = props
+
     useEffect(() => {
         getCommentsByArticleID(articleID).then((comments) => {
             setComments(comments)
             setIsLoading(false)
         })
     }, [])
+
+    const handleAddCommentClick = () => {
+        setDisplayCommentForm(true)
+    }
+
     if (isLoading) {
         return (<div className="comments">
             <h3>Loading...</h3>
         </div>)
+    } else {
+        if (comments.length === 0 ) {
+            return (
+                <>
+                    <div className="comments">
+                        <p className='comment'>No comments yet ...</p>
+                    </div>
+                    <div className="add-comment-overlay">
+                        <div className="add-comment-text-box" onClick={handleAddCommentClick}>
+                            <p>Add comment ...</p>
+                            <img src="/src/assets/arrow-right-solid.svg"/>
+                        </div>
+                    </div>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <div className="comments">
+                        {comments.map((comment) => {
+                            return <Comment key={comment.comment_id} comment={comment}/>
+                        })}
+                    </div>
+                    <div className="add-comment-overlay">
+                        <div className="add-comment-text-box" onClick={handleAddCommentClick}>
+                            <p>Add comment ...</p>
+                            <img src="/src/assets/arrow-right-solid.svg"/>
+                        </div>
+                    </div>
+                </> 
+            )
+        }
     }
-    return (
-        <div className="comments">
-            {comments.map((comment) => {
-                return <Comment key={comment.comment_id} comment={comment}/>
-            })}
-        </div>
-    )
 }
 
 export default Comments
