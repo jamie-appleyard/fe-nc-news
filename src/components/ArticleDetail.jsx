@@ -13,11 +13,13 @@ const ArticleDetail = () => {
     const { articleID } = useParams()
     const [article, setArticle] = useState({})
     const [author, setAuthor] = useState('')
+    const [loading, setLoading] = useState(true)
     const { users } = useContext(UserContext)
 
     useEffect(() => {
         getArticleByID(articleID).then((article) => {
             setArticle(article)
+            setLoading(false)
         })
     }, [])
 
@@ -26,26 +28,34 @@ const ArticleDetail = () => {
         setAuthor(matchingAuthor)
     }, [users])
 
-    return (
-        <>
-            <div className="article-detail">
-                <div className="sub-menu">
-                    <Link to='/'>
-                        <BackButton/>
-                    </Link>
+    if (loading) {
+        return (
+           <div className='articles-list'>
+               <h3>Loading ...</h3>
+           </div>
+        )
+   } else {
+        return (
+            <>
+                <div className="article-detail">
+                    <div className="sub-menu">
+                        <Link to='/'>
+                            <BackButton/>
+                        </Link>
+                    </div>
+                    <div className="article-card-details-block">
+                        <ProfileImage image_url={author ? author.avatar_url : '/src/assets/user-regular.svg'}/>
+                        <p>{article.author} - {article.topic}</p>
+                    </div>
+                    <h2>{article.title}</h2>
+                    <img className='article-detail-img' src={article.article_img_url}/>
+                    <p>{article.body}</p>
                 </div>
-                <div className="article-card-details-block">
-                    <ProfileImage image_url={author ? author.avatar_url : '/src/assets/user-regular.svg'}/>
-                    <p>{article.author} - {article.topic}</p>
-                </div>
-                <h2>{article.title}</h2>
-                <img className='article-detail-img' src={article.article_img_url}/>
-                <p>{article.body}</p>
-            </div>
-            <VoteCommentModule votes={article.votes} commentsOn={false}/>
-            <Comments articleID={articleID}/>
-        </>
-    )
+                <VoteCommentModule voteTargetID={article.article_id} votes={article.votes} commentsOn={false}/>
+                <Comments articleID={articleID}/>
+            </>
+        )
+   }
 }
 
 export default ArticleDetail
