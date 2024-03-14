@@ -266,3 +266,17 @@ textarea:focus {
   height: 2vh;
   align-self: center;
 }
+
+.comments-menu {
+  height: 1.5em;
+  align-self: center;
+  margin-left: auto;
+  margin-right: 2em;
+}
+
+.comment-delete-button {
+  background: red;
+  border: none;
+  border-radius: 10px;
+  padding: 0em 1em;
+}

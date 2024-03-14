@@ -60,7 +60,7 @@ const ArticleDetail = () => {
                     <p>{article.body}</p>
                 </div>
                 <VoteCommentModule voteTargetID={article.article_id} votes={article.votes} commentsOn={false}/>
-                <Comments articleID={articleID} articleTitle={article.title} setDisplayCommentForm={setDisplayCommentForm} comments={comments} setComments={setComments}/>
+                <Comments articleID={articleID} articleTitle={article.title} setDisplayCommentForm={setDisplayCommentForm} comments={comments} setComments={setComments} setDisplayStatusMessage={setDisplayStatusMessage} setStatusMessage={setStatusMessage}/>
             </>
         )
     }

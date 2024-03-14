@@ -50,3 +50,9 @@ export const postCommentByArticleID = (articleID, commentObj) => {
         return response.data.comment
     })
 }
+
+export const deleteCommentByID = (commentID) => {
+    return NCNewsAPI.delete(`/comments/${commentID}`).then((response) => {
+        return response.status
+    })
+}

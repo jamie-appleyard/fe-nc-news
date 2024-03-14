@@ -12,7 +12,6 @@ const AddCommentForm = (props) => {
         setDisplayCommentForm(false)
     }
 
-    //Submit and see the form close and the comment appear at the top of the list
     const handlePostButtonClick = (e) => {
         e.preventDefault()
 
@@ -39,6 +38,16 @@ const AddCommentForm = (props) => {
         postCommentByArticleID(articleID, postCommentObj).then((comment) => {
             setStatusMessage('Comment Posted Succesfully')
             setDisplayStatusMessage(true)
+            setComments((currComments) => {
+                const newComments = currComments.map((currComment) => {
+                    if (currComment.comment_id === 'tempkey') {
+                        return comment
+                    } else {
+                        return currComment
+                    }
+                })
+                return newComments
+            })
         }).catch((err) => {
             setStatusMessage('Comment Failed To Post')
             setDisplayStatusMessage(true)
