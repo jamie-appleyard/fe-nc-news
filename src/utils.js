@@ -16,8 +16,14 @@ export const getUser = (username) => {
     })
 }
 
-export const getArticles = () => {
-    return NCNewsAPI.get('/articles').then((response) => {
+export const getArticles = (query) => {
+    let URL = '/articles'
+    if (query) {
+        if (query !== 'Home') {
+            URL = URL + `?topic=${query}`
+        }
+    }
+    return NCNewsAPI.get(URL).then((response) => {
         return response.data.articles
     })
 }
