@@ -2,16 +2,18 @@ import { useEffect, useState } from "react"
 import { getArticles } from "../utils"
 import ArticleCard from "./ArticleCard"
 
-const ArticlesList = () => {
+const ArticlesList = (props) => {
     const [articles, setArticles] = useState([])
     const [loading, setLoading] = useState(true)
+    const { topicQuery } = props
 
     useEffect(() => {
-        getArticles().then((articles) => {
+        setLoading(true)
+        getArticles(topicQuery).then((articles) => {
             setArticles(articles)
             setLoading(false)
         })
-    }, [])
+    }, [topicQuery])
 
     if (loading) {
          return (

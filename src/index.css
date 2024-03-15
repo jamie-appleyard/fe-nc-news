@@ -37,8 +37,54 @@ nav img {
   height: 2em;
 }
 
-nav form {
+/* nav form {
   align-self: center;
+}
+
+nav form select {
+  width: 20vw;
+  height: 3vh;
+}
+
+nav form select option {
+  background: white;
+} */
+
+.topic-dropdown-closed {
+  align-self: center;
+  border: solid 1px #ffffff;
+  border-radius: 10px;
+  padding: 0.3em;
+  display: flex;
+  justify-content: left;
+}
+
+.topic-dropdown-closed img {
+  align-self: center;
+  width: 1em;
+  margin-right: 0.5em;
+}
+
+.topic-dropdown-expanded {
+  border: solid 1px #ffffff;
+  border-radius: 10px;
+  padding: 0.1em 0.5em;
+  height: fit-content;
+  text-align: left;
+  background-color: #003049;
+  z-index: 5;
+}
+
+.topic-dropdown-expanded img {
+  width: 1em;
+  margin-right: 0.5em;
+}
+
+.topic-dropdown-expanded-option {
+  display: flex;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.331);
+  padding: 10px 0px;
+  background: #003049;
 }
 
 .profile-image-frame {

@@ -6,17 +6,25 @@ import { getTopics, getUser, getUsers } from './utils'
 import NavBar from './components/NavBar'
 import ArticlesList from './components/ArticlesList'
 import ArticleDetail from './components/ArticleDetail'
+import { useSearchParams } from "react-router-dom"
 
 function App() {
   const [user, setUser] = useState({}) //wants to be a useEffect to retrieve a user object from API
   const [isLoggedIn, setIsLoggedIn] = useState(true)
-  const [topics, setTopics] = useState([])
-  const [selectedTopic, setSelectedTopic] = useState('')
+  const [topics, setTopics] = useState([{slug:'Home'}])
   const [users, setUsers] = useState([])
+  const [searchParams, setSearchParams] = useSearchParams()
+  const topicQuery = searchParams.get('topic')
+
+  const setTopic = (topic) => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set('topic', topic)
+    setSearchParams(newParams)
+  }
 
   useEffect(() => {
-    getTopics().then((topics) => {
-      setTopics(topics)
+    getTopics().then((resTopics) => {
+      setTopics([...topics, ...resTopics])
     })
   }, [])
 
@@ -35,9 +43,9 @@ function App() {
   return (
     <>
       <UserContext.Provider value={{user, isLoggedIn, users}}>
-        <NavBar topics={topics} setSelectedTopic={setSelectedTopic}/>
+        <NavBar topics={topics} setTopic={setTopic} topicQuery={topicQuery}/>
         <Routes>
-          <Route path='/' element={<ArticlesList/>}/>
+          <Route path='/' element={<ArticlesList topicQuery={topicQuery}/>}/>
           <Route path='/articles/:articleID' element={<ArticleDetail/>}/>
         </Routes>
       </UserContext.Provider>
